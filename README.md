@@ -3,3 +3,7 @@ This repository is to add small projects that I used to learn. The idea is to ke
 
 ### Calculator:
 basic calculator where you can add, subtract, multiply and divide:
+
+<a href="https://github.com/ClementeVM/JavaPlayground#:~:text=8%20Commits-,CalculatorJava,-miniProjects">
+Link to GitHub
+</a>
