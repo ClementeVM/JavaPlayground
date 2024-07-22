@@ -2,7 +2,7 @@
 This repository is to add small projects that I used to learn. The idea is to keep all these simple projects together in one place and to have a space where to add simple projects that I consider interesting.
 
 ### Calculator:
-basic calculator where you can add, subtract, multiply and divide:
+basic calculator where you can add, substract, multiply and divide:
 
 <a href="https://github.com/ClementeVM/JavaPlayground/tree/playGround/CalculatorJava">
 Link to GitHub
