@@ -22,8 +22,8 @@ public class password_generator implements ChangeListener {
     private JPanel password_generator;
     private JLabel textLength;
     private JPasswordField passwordText;
-    private JProgressBar progressBar1;
-    private JSlider slider1;
+    private JProgressBar passwordStrength;
+    private JSlider passwordLength;
     private JCheckBox toggleVisibilityPassword;
     private final List<Integer> lowercaseChars;
     private final List<Integer> uppercaseChars;
@@ -60,14 +60,14 @@ public class password_generator implements ChangeListener {
         });
 
         btnNew.addActionListener(e -> {
-            int lengthPassword = slider1.getValue();
+            int lengthPassword = passwordLength.getValue();
             String password = generatePassword(lengthPassword);
             passwordText.setText(password);
             updatePasswordStrength(password);
         });
 
-        textLength.setText("Length: " + slider1.getValue());
-        slider1.addChangeListener(this);
+        textLength.setText("Length: " + passwordLength.getValue());
+        passwordLength.addChangeListener(this);
 
         toggleVisibilityPassword.addActionListener(e -> {
             if (toggleVisibilityPassword.isSelected()) {
@@ -78,7 +78,7 @@ public class password_generator implements ChangeListener {
         });
 
         updateCharacterList();
-        String initialPassword = generatePassword(slider1.getValue());
+        String initialPassword = generatePassword(passwordLength.getValue());
         passwordText.setText(initialPassword);
     }
 
@@ -92,7 +92,7 @@ public class password_generator implements ChangeListener {
 
     private void updatePasswordStrength(String password) {
         int strength = calculatePasswordStrength(password);
-        progressBar1.setValue(strength);
+        passwordStrength.setValue(strength);
     }
     private int calculatePasswordStrength(String password) {
         int length = password.length();
@@ -126,7 +126,7 @@ public class password_generator implements ChangeListener {
 
     @Override
     public void stateChanged(ChangeEvent e) {
-        textLength.setText("Length: " + slider1.getValue());
+        textLength.setText("Length: " + passwordLength.getValue());
         updatePasswordStrength(String.valueOf(passwordText.getPassword()));
     }
 
