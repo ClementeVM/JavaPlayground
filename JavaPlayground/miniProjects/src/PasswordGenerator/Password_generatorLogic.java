@@ -13,6 +13,7 @@ public class Password_generatorLogic {
     private final List<Integer> symbolChars;
     private final List<Integer> characters;
     private final Random random;
+    private boolean passwordVisible;
 
     public Password_generatorLogic() {
         lowercaseChars = IntStream.rangeClosed(97, 122).boxed().collect(Collectors.toList());
@@ -24,6 +25,7 @@ public class Password_generatorLogic {
         ).boxed().collect(Collectors.toList());
         characters = new ArrayList<>();
         random = new Random();
+        this.passwordVisible = false;
     }
 
     public void setIncludeLowercase(Boolean include) {
@@ -55,6 +57,14 @@ public class Password_generatorLogic {
                 .map(i -> characters.get(random.nextInt(characters.size())))
                 .mapToObj(ch -> String.valueOf((char) ch))
                 .collect(Collectors.joining());
+    }
+
+    public void togglePasswordVisibility() {
+        passwordVisible = !passwordVisible;
+    }
+
+    public boolean isPasswordVisible() {
+        return passwordVisible;
     }
 
     public int calculatePasswordStrength(String password) {

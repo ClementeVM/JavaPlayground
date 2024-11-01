@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+
 public class Password_generatorTest {
     private Password_generatorLogic passwordGenerator;
 
@@ -13,7 +14,7 @@ public class Password_generatorTest {
     }
 
     @Test
-    public void LowercaseAndLengthOfTen() {
+    public void lowercaseAndLengthOfTen() {
         passwordGenerator.setIncludeLowercase(true);
         passwordGenerator.setIncludeUppercase(false);
         passwordGenerator.setIncludeNumbers(false);
@@ -24,7 +25,7 @@ public class Password_generatorTest {
     }
 
     @Test
-    public void UppercaseAndLengthOfTwenty() {
+    public void uppercaseAndLengthOfTwenty() {
         passwordGenerator.setIncludeLowercase(false);
         passwordGenerator.setIncludeUppercase(true);
         passwordGenerator.setIncludeNumbers(false);
@@ -35,7 +36,7 @@ public class Password_generatorTest {
     }
 
     @Test
-    public void NumberAndLengthOfFour() {
+    public void numberAndLengthOfFour() {
         passwordGenerator.setIncludeLowercase(false);
         passwordGenerator.setIncludeUppercase(false);
         passwordGenerator.setIncludeNumbers(true);
@@ -46,7 +47,7 @@ public class Password_generatorTest {
     }
 
     @Test
-    public void SymbolAndLengthOfSix() {
+    public void symbolAndLengthOfSix() {
         passwordGenerator.setIncludeLowercase(false);
         passwordGenerator.setIncludeUppercase(false);
         passwordGenerator.setIncludeNumbers(false);
@@ -56,7 +57,29 @@ public class Password_generatorTest {
         assertTrue(password.chars().noneMatch(Character::isLetterOrDigit));
     }
 
+    @Test
+    public void allCharactersAndTwentyFourLength() {
+        passwordGenerator.setIncludeLowercase(true);
+        passwordGenerator.setIncludeUppercase(true);
+        passwordGenerator.setIncludeNumbers(true);
+        passwordGenerator.setIncludeSymbols(true);
 
+        String password = passwordGenerator.generatePassword(24);
+        assertTrue(password.chars().anyMatch(Character::isLowerCase));
+        assertTrue(password.chars().anyMatch(Character::isUpperCase));
+        assertTrue(password.chars().anyMatch(Character::isDigit));
+        assertTrue(password.chars().anyMatch( ch -> !Character.isLetterOrDigit(ch)));
+    }
 
+    @Test
+    public void testTogglePasswordVisibility() {
+        assertFalse(passwordGenerator.isPasswordVisible());
+
+        passwordGenerator.togglePasswordVisibility();
+        assertTrue(passwordGenerator.isPasswordVisible());
+
+        passwordGenerator.togglePasswordVisibility();
+        assertFalse(passwordGenerator.isPasswordVisible());
+    }
 
 }
